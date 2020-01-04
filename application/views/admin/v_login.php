@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<link rel="shortcut icon" href="<?=base_url()?>assets/images/store.png">
+	<link rel="shortcut icon" href="<?=base_url()?>assets/images/store
+	.png">
     <!-- Bootstrap -->
     <link href="<?php echo base_url().'assets/css/bootstrap.min.css'?>" rel="stylesheet">
     <!-- styles -->
@@ -67,7 +68,7 @@ a:hover {
 			                <img width="310px" src="<?php echo base_url().'assets/images/logo_pos.png'?>"/>
 			                <p><?php echo $this->session->flashdata('msg');?></p>
 	                        <hr/>
-	                        <form action="<?php echo base_url().'administrator/cekuser'?>" method="post">
+	                        <form action="<?php echo base_url('administrator/cekuser')?>" method="post">
 	                        	<input class="form-control" type="text" name="username" placeholder="Username" required>
 				                <input class="form-control" type="password" name="password" placeholder="Password" style="margin-bottom:1px;" required>
 				                <div class="action">

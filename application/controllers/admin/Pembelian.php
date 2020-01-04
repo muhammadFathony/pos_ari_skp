@@ -13,6 +13,7 @@ class Pembelian extends CI_Controller{
 	}
 	function index(){
 	if($this->session->userdata('akses')=='1'){
+		$x['data']=$this->m_barang->tampil_barang();
 		$x['sup']=$this->m_suplier->tampil_suplier();
 		$this->load->view('admin/v_pembelian',$x);
 	}else{

@@ -3,13 +3,13 @@
     <title>Faktur Penjualan Barang</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/laporan.css')?>"/>
+    <link rel="shortcut icon" href="<?=base_url()?>assets/images/store.png">
+
 </head>
 <body onload="window.print()">
 <div id="laporan">
 <table align="center" style="width:700px; border-bottom:3px double;border-top:none;border-right:none;border-left:none;margin-top:5px;margin-bottom:20px;">
-<!--<tr>
-    <td><img src="<?php// echo base_url().'assets/img/kop_surat.png'?>"/></td>
-</tr>-->
+
 </table>
 
 <table border="0" align="center" style="width:700px; border:none;margin-top:5px;margin-bottom:0px;">
@@ -94,7 +94,7 @@ $no=0;
 </table>
 <table align="center" style="width:700px; border:none;margin-top:5px;margin-bottom:20px;">
     <tr>
-        <td align="right">Padang, <?php echo date('d-M-Y')?></td>
+        <td align="right">Luhu, <?php date_default_timezone_set('Asia/Jakarta'); echo date('d-M-Y'); ?></td>
     </tr>
     <tr>
         <td align="right"></td>
