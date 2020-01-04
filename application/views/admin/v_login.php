@@ -66,7 +66,7 @@ a:hover {
 			        <div class="box">
 			            <div class="content-wrap">
 			                <img width="310px" src="<?php echo base_url().'assets/images/logo_pos.png'?>"/>
-			                <p><?php echo $this->session->flashdata('msg');?></p> INI AKU UPDATE
+			                <p><?php echo $this->session->flashdata('msg');?></p>
 	                        <hr/>
 	                        <form action="<?php echo base_url('administrator/cekuser')?>" method="post">
 	                        	<input class="form-control" type="text" name="username" placeholder="Username" required>

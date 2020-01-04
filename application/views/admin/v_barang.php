@@ -10,8 +10,7 @@
     <meta name="author" content="">
 
     <title>Master data barang</title>
-    <link rel="shortcut icon" href="<?=base_url()?>assets/images/store
-	.png">
+    <link rel="shortcut icon" href="<?=base_url()?>assets/images/store.png">
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url().'assets/css/bootstrap.min.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'assets/css/style.css'?>" rel="stylesheet">
