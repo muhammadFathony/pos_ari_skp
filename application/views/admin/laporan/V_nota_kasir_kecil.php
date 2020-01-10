@@ -92,7 +92,7 @@ $content	=
 									<tr style="padding:2px">
 										<td style="width:85px;"><b>Nota</b></td>
 										<td style="width:20px;">:</td>
-										<td style="width:150px;">s</td>
+										<td style="width:150px;">'.$this->session->userdata('nofak').'</td>
 									</tr>
 									<tr style="padding:2px">
 										<td><b>Tanggal</b></td>
