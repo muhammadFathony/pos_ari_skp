@@ -12,6 +12,7 @@ class Laporan extends CI_Controller{
 		$this->load->model('m_pembelian');
 		$this->load->model('m_penjualan');
 		$this->load->model('m_laporan');
+		$this->load->library('Config_tcpdf');
 	}
 	function index(){
 		if($this->session->userdata('akses')=='1'){
@@ -24,6 +25,13 @@ class Laporan extends CI_Controller{
 			echo "Halaman tidak ditemukan";
 		}
 	}
+
+	public function nota_kecil_kasir()
+	{
+		$this->load->view('admin/laporan/V_nota_kasir_kecil');
+		
+	}
+
 	function lap_stok_barang(){
 		$x['data']=$this->m_laporan->get_stok_barang();
 		$this->load->view('admin/laporan/v_lap_stok_barang',$x);
