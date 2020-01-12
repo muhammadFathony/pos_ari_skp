@@ -57,4 +57,25 @@ class M_laporan extends CI_Model{
 		$hsl=$this->db->query("SELECT DATE_FORMAT(jual_tanggal,'%M %Y') AS bulan,d_jual_barang_nama,d_jual_barang_satuan,d_jual_barang_harpok,d_jual_barang_harjul,(d_jual_barang_harjul-d_jual_barang_harpok) AS keunt,d_jual_qty,d_jual_diskon,SUM(((d_jual_barang_harjul-d_jual_barang_harpok)*d_jual_qty)-(d_jual_qty*d_jual_diskon)) AS total FROM tbl_jual JOIN tbl_detail_jual ON jual_nofak=d_jual_nofak WHERE DATE_FORMAT(jual_tanggal,'%M %Y')='$bulan'");
 		return $hsl;
 	}
+
+	public function get_jual()
+	{
+		$nofak = $this->session->userdata('nofak');
+		$this->db->select("DATE_FORMAT(tbl_jual.jual_tanggal,'%d-%m-%Y %H:%i:%s') as tanggal", FALSE);
+		$this->db->select('tbl_jual.jual_nofak, tbl_jual.jual_total, tbl_jual.jual_jml_uang, tbl_jual.jual_keterangan, tbl_user.user_id');
+		$this->db->from('tbl_jual');
+		$this->db->join('tbl_user', 'tbl_jual.jual_user_id = tbl_user.user_id', 'inner');
+		$this->db->where('tbl_jual.jual_nofak', $nofak);
+		$data = $this->db->get()->row();
+
+		return $data;
+	}
+
+	public function get_jual_detail()
+	{
+		$nofak = $this->session->userdata('nofak');
+		$data = $this->db->where('d_jual_nofak', $nofak)->get('tbl_detail_jual')->row();
+
+		return $data;
+	}
 }

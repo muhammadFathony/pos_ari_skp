@@ -132,7 +132,7 @@
                 <div class="alert alert-success">
                     <strong>Transaksi Berhasil Silahkan Cetak Faktur Penjualan!</strong>
                     <a class="btn btn-default" href="<?php echo base_url().'admin/penjualan'?>"><span class="fa fa-backward"></span>Kembali</a>
-                    <a class="btn btn-info" href="<?php echo base_url().'admin/penjualan/cetak_faktur'?>" target="_blank"><span class="fa fa-print"></span>Cetak</a>
+                    <a class="btn btn-info" href="<?php echo base_url().'admin/laporan/nota_kecil_kasir'?>" target="_blank"><span class="fa fa-print"></span>Cetak</a>
                 </div>
             </div>
         </div>

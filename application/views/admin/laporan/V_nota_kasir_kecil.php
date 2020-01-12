@@ -85,6 +85,7 @@ $content	=
 						<br>
 						<label style="font-size:12px;">Desa Mekar Sari<br>Kec. Toili Barat - Sulawesi Tengah<br>
 						Telp. (082) 290006989<label> <br><div></div>';
+
 	$content 	.= '<table style="font-size:8px;">
 						<tr>
 							<td style="width: 58%;vertical-align: top;">
@@ -92,12 +93,12 @@ $content	=
 									<tr style="padding:2px">
 										<td style="width:85px;"><b>Nota</b></td>
 										<td style="width:20px;">:</td>
-										<td style="width:150px;">'.$this->session->userdata('nofak').'</td>
+										<td style="width:150px;">'.$data_jual->jual_nofak.'</td>
 									</tr>
 									<tr style="padding:2px">
 										<td><b>Tanggal</b></td>
 										<td>:</td>
-										<td>f</td>
+										<td>'.$data_jual->tanggal.'</td>
 									</tr>
 									<tr style="padding:2px">
 										<td><b>Kasir</b></td>

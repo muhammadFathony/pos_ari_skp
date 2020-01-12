@@ -84,37 +84,37 @@ class Penjualan extends CI_Controller{
     }
 	}
 	function simpan_penjualan(){
-	if($this->session->userdata('akses')=='1' || $this->session->userdata('akses')=='2'){
-		$total=$this->input->post('total');
-		$jml_uang=str_replace(",", "", $this->input->post('jml_uang'));
-		$kembalian=$jml_uang-$total;
-		if(!empty($total) && !empty($jml_uang)){
-			if($jml_uang < $total){
-				echo $this->session->set_flashdata('msg','<label class="label label-danger">Jumlah Uang yang anda masukan Kurang</label>');
-				redirect('admin/penjualan');
-			}else{
-				$nofak=$this->m_penjualan->get_nofak();
-				$this->session->set_userdata('nofak',$nofak);
-				$order_proses=$this->m_penjualan->simpan_penjualan($nofak,$total,$jml_uang,$kembalian);
-				if($order_proses){
-					$this->cart->destroy();
-					
-					$this->session->unset_userdata('tglfak');
-					$this->session->unset_userdata('suplier');
-					$this->load->view('admin/alert/alert_sukses');	
-				}else{
+		if($this->session->userdata('akses')=='1' || $this->session->userdata('akses')=='2'){
+			$total=$this->input->post('total');
+			$jml_uang=str_replace(",", "", $this->input->post('jml_uang'));
+			$kembalian=$jml_uang-$total;
+			if(!empty($total) && !empty($jml_uang)){
+				if($jml_uang < $total){
+					echo $this->session->set_flashdata('msg','<label class="label label-danger">Jumlah Uang yang anda masukan Kurang</label>');
 					redirect('admin/penjualan');
+				}else{
+					$nofak=$this->m_penjualan->get_nofak();
+					$this->session->set_userdata('nofak',$nofak);
+					$order_proses=$this->m_penjualan->simpan_penjualan($nofak,$total,$jml_uang,$kembalian);
+					if($order_proses){
+						$this->cart->destroy();
+						
+						$this->session->unset_userdata('tglfak');
+						$this->session->unset_userdata('suplier');
+						$this->load->view('admin/alert/alert_sukses');	
+					}else{
+						redirect('admin/penjualan');
+					}
 				}
+				
+			}else{
+				echo $this->session->set_flashdata('msg','<label class="label label-danger">Penjualan Gagal di Simpan, Mohon Periksa Kembali Semua Inputan Anda!</label>');
+				redirect('admin/penjualan');
 			}
-			
-		}else{
-			echo $this->session->set_flashdata('msg','<label class="label label-danger">Penjualan Gagal di Simpan, Mohon Periksa Kembali Semua Inputan Anda!</label>');
-			redirect('admin/penjualan');
-		}
 
-	}else{
-        echo "Halaman tidak ditemukan";
-    }
+		}else{
+	        echo "Halaman tidak ditemukan";
+	    }
 	}
 
 	function cetak_faktur(){
