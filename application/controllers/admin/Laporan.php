@@ -37,7 +37,7 @@ class Laporan extends CI_Controller{
 	public function testsession()
 	{
 //		echo $this->session->userdata('nofak');
-		$data['data_jual'] = $this->m_laporan->get_jual();
+		$data['data_jual'] = $this->m_laporan->get_jual_detail();
 		$this->output->set_content_type('application/json')->set_output(json_encode($data));
 	}
 

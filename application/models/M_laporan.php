@@ -62,7 +62,7 @@ class M_laporan extends CI_Model{
 	{
 		$nofak = $this->session->userdata('nofak');
 		$this->db->select("DATE_FORMAT(tbl_jual.jual_tanggal,'%d-%m-%Y %H:%i:%s') as tanggal", FALSE);
-		$this->db->select('tbl_jual.jual_nofak, tbl_jual.jual_total, tbl_jual.jual_jml_uang, tbl_jual.jual_keterangan, tbl_user.user_id');
+		$this->db->select('tbl_jual.jual_nofak, tbl_jual.jual_total, tbl_jual.jual_jml_uang, tbl_jual.jual_keterangan, tbl_user.user_id, tbl_user.user_nama');
 		$this->db->from('tbl_jual');
 		$this->db->join('tbl_user', 'tbl_jual.jual_user_id = tbl_user.user_id', 'inner');
 		$this->db->where('tbl_jual.jual_nofak', $nofak);
@@ -74,7 +74,7 @@ class M_laporan extends CI_Model{
 	public function get_jual_detail()
 	{
 		$nofak = $this->session->userdata('nofak');
-		$data = $this->db->where('d_jual_nofak', $nofak)->get('tbl_detail_jual')->row();
+		$data = $this->db->where('d_jual_nofak', $nofak)->get('tbl_detail_jual')->result();
 
 		return $data;
 	}

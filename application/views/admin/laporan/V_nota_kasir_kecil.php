@@ -103,22 +103,7 @@ $content	=
 									<tr style="padding:2px">
 										<td><b>Kasir</b></td>
 										<td>:</td>
-										<td>fg</td>
-									</tr>
-									<tr style="padding:2px">
-										<td><b>Sales</b></td>
-										<td>:</td>
-										<td>gg</td>
-									</tr>
-									<tr style="padding:2px">
-										<td><b>Customer</b></td>
-										<td>:</td>
-										<td>dsf</td>
-									</tr>
-									<tr style="padding:2px">
-										<td><b>Jenis Jual</b></td>
-										<td>:</td>
-										<td>sdfsd</td>
+										<td>'.$data_jual->user_nama.'</td>
 									</tr>';
 		$content .=		'</table>
 							</td>
@@ -131,23 +116,31 @@ $content	=
 
 		$content	.= 
 					'<tr>';
+		$total_global = 0;
+		$diskon_global = 0;
+		$grantotal = 0;
+		foreach ($data_jual_detail as $data_jual_detail ) {
+		$total = $data_jual_detail->d_jual_qty*$data_jual_detail->d_jual_barang_harjul;
+		$total_global += $total;
+		$diskon_perbarang = $data_jual_detail->d_jual_qty * ($data_jual_detail->d_jual_barang_harjul * $data_jual_detail->d_jual_diskon / 100);
+		$diskon_global += $diskon_perbarang;
+		$grantotal += $total_global - $diskon_global;
+			$content .= '<td style="text-align: left; width:105px;"><label style="text-transform: uppercase;">'.$data_jual_detail->d_jual_barang_id.'</label></td>';
 		
-			$content .= '<td style="text-align: left; width:105px;"><label style="text-transform: uppercase;">hjg</label></td>';
-		
-	$content	.=	'<td style="text-align: left; width:90px;">ghjghjg</td>
+			$content	.=	'<td style="text-align: left; width:90px;"></td>
 					</tr>
 					<tr>
 						
-						<td style="text-align:left; width:200px;"><label style="">gjhgj</label></td>
+						<td style="text-align:left; width:200px;"><label style="">'.$data_jual_detail->d_jual_barang_nama.'</label></td>
 					</tr>
 					<tr>
-						<td style="text-align: left; width:70px;">fjgfgj<br></td>
+						<td style="text-align: left; width:70px;">'.number_format($data_jual_detail->d_jual_barang_harjul).'<br></td>
 						<td style="text-align: left; width:15px;">x</td>
-						<td style="text-align: left; width:35px;">fgjfgj</td>
-						<td style="text-align: left; width:95px;">fjghgjfj</td>
+						<td style="text-align: left; width:35px;">'.$data_jual_detail->d_jual_qty.'</td>
+						<td style="text-align: left; width:95px;"> = &nbsp; '.number_format($total).'</td>
 						
 					</tr>';
-
+		}
 	$content	.= '</table>';
 	$content	.= 			'<table style="width: 100%; font-size:13px;">
 								<tr>';
@@ -177,11 +170,9 @@ $content	=
 		// 							 	</table>
 		// 				 			</td>';
 
-		$content	.= 				'<td style="width: 100%;vertical-align: top; font-size:12px;" rowspan="7">
-										<b>Keterangan : </b>ghjighj</td>';
 	
 		$content	.= 				'<td style="width: 100%;vertical-align: top; font-size:12px;" rowspan="7">
-										<b>Keterangan : </b> ghjgj</td>';
+										<b>Keterangan : </b> </td>';
 
 	$content 		.=				'<b style="display:none;">
 									<td style="width: 20%;">Total</td>
@@ -199,45 +190,35 @@ $content	=
 						 		<tr>
 						 			<td style="width: 35%;"><p style="font-weight:bold;">Total</p></td>
 						 			<td style="width: 2%;text-align: right;">:</td>
-						 			<td style="width: 37%;text-align: right;">fghfghfg</td>
+						 			<td style="width: 37%;text-align: right;">'.number_format($total_global).'</td>
 						 		</tr>
 						 		
 						 		<tr>
 						 			<td style="width: 35%;">Ongkir</td>
 						 			<td style="width: 2%;text-align: right;">:</td>
-						 			<td style="width: 37%;text-align: right;">fghgfh</td>
+						 			<td style="width: 37%;text-align: right;">0</td>
 						 		</tr>
 						 		<tr>
 						 			<td style="width: 35%;">Diskon</td>
 						 			<td style="width: 2%;text-align: right;">:</td>
-						 			<td style="width: 37%;text-align: right;">fghfghgf</td>
+						 			<td style="width: 37%;text-align: right;">'.number_format($diskon_global).' </td>
 						 		</tr>
 						 		
 						 		<tr>
 						 			<td style="width: 35%;">Grand Total</td>
 						 			<td style="width: 2%;text-align: right;">:</td>
-						 			<td style="width: 37%;text-align: right;">fghfgh</td>
+						 			<td style="width: 37%;text-align: right;">'.number_format($total_global - $diskon_global) .'</td>
 						 		</tr>';
-	// if ($data->debit_nom>0) {
-	// 	$content		.= 		'<tr>
-	// 								<td style="width: 20%;">Non-Tunai (' . $data->debit_bank . ')</td>
-	// 					 			<td style="width: 5%;text-align: right;">:</td>
-	// 					 			<td style="width: 15%;text-align: right;">' 
-	// 					 				. number_format($data->debit_nom) . 
-	// 					 			'</td>
-	// 				 			</tr>';
-	// }
-
-		$content		.= 		'<tr>
-									<td style="width: 35%;">Tabungan </td>
-						 			<td style="width: 2%;text-align: right;">:</td>
-						 			<td style="width: 37%;text-align: right;">fghfghfg</td>
-					 			</tr>';
-
+	
 		$content		.=		'<tr>
 						 			<td style="width: 35%;">Bayar Tunai</td>
 						 			<td style="width: 2%;text-align: right;">:</td>
-						 			<td style="width: 37%;text-align: right;">dcfhdfgh</td>
+						 			<td style="width: 37%;text-align: right;">'.number_format($data_jual->jual_jml_uang).'</td>
+								 </tr>';
+		$content		.=		'<tr>
+						 			<td style="width: 35%;">Kembali</td>
+						 			<td style="width: 2%;text-align: right;">:</td>
+						 			<td style="width: 37%;text-align: right;">'.number_format($data_jual->jual_jml_uang - ($total_global - $diskon_global)).'</td>
 						 		</tr>';
 
 
